@@ -13,7 +13,8 @@ class PositionEditorPage extends StatefulWidget {
 class _PositionEditorPage extends State<PositionEditorPage> {
   bool isWhiteInBottomColor = true;
   bool isWhiteMove = true;
-  ChessParty chessParty = chessPartyGenerator('Тестовая партия');
+  ChessParty chessParty = chessPartyGenerator('Тестовая партия',
+      "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
   final chess = new chess_logic.Chess();
   String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
   _changeColor() {
@@ -50,12 +51,13 @@ class _PositionEditorPage extends State<PositionEditorPage> {
             },
           ),
           IconButton(
-              icon: Icon(Icons.paste),
-              onPressed: () async {
-                ClipboardData data =
-                    await Clipboard.getData(Clipboard.kTextPlain);
-                setState(() {
-                  chess_logic.Chess.validate_fen(data.text)[1] == true
+            icon: Icon(Icons.paste),
+            onPressed: () async {
+              ClipboardData data =
+                  await Clipboard.getData(Clipboard.kTextPlain);
+              setState(
+                () {
+                  chess_logic.Chess.validate_fen(data.text)['valid'] == true
                       ? fen = data.text
                       : showDialog(
                           context: context,
@@ -72,8 +74,10 @@ class _PositionEditorPage extends State<PositionEditorPage> {
                           ),
                           barrierDismissible: true,
                         );
-                });
-              })
+                },
+              );
+            },
+          )
         ],
       ),
       body: Center(
