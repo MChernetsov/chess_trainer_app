@@ -9,10 +9,10 @@ class ChessParty {
   });
 }
 
-ChessParty chessPartyGenerator(String text) {
+ChessParty chessPartyGenerator(String text, String fen) {
   DateTime now = DateTime.now();
   return ChessParty(
-      movesList: ["rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"],
+      movesList: [fen],
       timeStarted: now,
-      partyInfo: 'Сыграно в $now игроком');
+      partyInfo: 'Сыграно в $now игроком, название text');
 }
