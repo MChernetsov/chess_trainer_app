@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:chess/chess.dart' as chess_logic;
 import 'package:flutter_stateless_chessboard/flutter_stateless_chessboard.dart'
     as Cb;
+import 'package:flutter_stateless_chessboard/widgets/chess_piece.dart' as piece;
+import 'package:flutter_stateless_chessboard/types.dart' as types;
 
 class PositionEditorPage extends StatefulWidget {
   @override
@@ -13,10 +15,12 @@ class PositionEditorPage extends StatefulWidget {
 class _PositionEditorPage extends State<PositionEditorPage> {
   bool isWhiteInBottomColor = true;
   bool isWhiteMove = true;
+
   ChessParty chessParty = chessPartyGenerator('Тестовая партия',
       "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
   final chess = new chess_logic.Chess();
-  String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+  String fen = "r1bqkbnr/pppp1ppp/2n5/4P3/8/5N2/PPP1PPPP/RNBQKB1R b KQkq - 0 1";
+
   _changeColor() {
     setState(() {
       isWhiteInBottomColor = !isWhiteInBottomColor;
@@ -66,10 +70,11 @@ class _PositionEditorPage extends State<PositionEditorPage> {
                             content: Text("Введите корректную позицию FEN"),
                             actions: [
                               TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('OK'))
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('OK'),
+                              ),
                             ],
                           ),
                           barrierDismissible: true,
@@ -119,27 +124,20 @@ class _PositionEditorPage extends State<PositionEditorPage> {
                   color: Colors.green,
                   child: TextButton(
                     onPressed: () {},
-                    child: Row(
-                      children: [
-                        Icon(Icons.ac_unit, color: Colors.white),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'Игнорировать правила',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
+                    child: Text(
+                      'Лучшие ходы',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
-            Row(
-              children: [],
-            ),
             Cb.Chessboard(
-              size: 300,
+              darkSquareColor: Colors.green,
+              lightSquareColor: Colors.white,
+              size: 400,
               fen: fen,
               onMove: (move) {
                 print("move from ${move.from} to ${move.to}");

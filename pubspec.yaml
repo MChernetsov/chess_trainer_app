@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.3
   flutter_stateless_chessboard: ^0.0.6
   chess: ^0.6.6
+  stockfish: ^0.1.0
 
 dev_dependencies:
   flutter_test:

@@ -27,13 +27,33 @@ class _ChessPartyPage extends State<ChessPartyPage> {
     ChessParty chessParty = chessPartyGenerator('', widget.startingPosition);
     String fen = chessParty.movesList.last;
     return Scaffold(
-      appBar: AppBar(title: Text('Партия')),
+      appBar: AppBar(
+        title: Text('Партия'),
+        actions: [IconButton(icon: Icon(Icons.save), onPressed: () {})],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: Text('Список подсказок'),
+                ),
+                IconButton(
+                    icon: Icon(Icons.keyboard_arrow_left, color: Colors.green),
+                    onPressed: () {}),
+                IconButton(
+                    icon: Icon(Icons.keyboard_arrow_right, color: Colors.green),
+                    onPressed: () {}),
+              ],
+            ),
             Cb.Chessboard(
-              size: 300,
+              darkSquareColor: Colors.green,
+              lightSquareColor: Colors.white,
+              size: 400,
               fen: fen,
               onMove: (move) {
                 print("move from ${move.from} to ${move.to}");

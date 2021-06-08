@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'presentation/start_party_page.Dart';
-import 'presentation/personal_history_page.dart';
+import 'presentation/history_page.dart';
 import 'presentation/position_browser_page.dart';
 import 'presentation/position_editor_page.dart';
 import 'presentation/settings_menu_page.dart';
@@ -45,8 +45,12 @@ class HomePage extends StatelessWidget {
               style: mainMenuButtonStyle,
               child: Text('Создать партию'),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => StartPartyPage()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StartPartyPage(),
+                  ),
+                );
               },
             ),
             SizedBox(
@@ -57,9 +61,11 @@ class HomePage extends StatelessWidget {
               child: Text('Редактор партий'),
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PositionEditorPage()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PositionEditorPage(),
+                  ),
+                );
               },
             ),
             SizedBox(
@@ -68,7 +74,14 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               style: mainMenuButtonStyle,
               child: Text('История партий'),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HistoryPage(),
+                  ),
+                );
+              },
             ),
             SizedBox(
               height: 20,
@@ -76,7 +89,14 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               style: mainMenuButtonStyle,
               child: Text('Готовые позиции'),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PositionBrowserPage(),
+                  ),
+                );
+              },
             ),
           ],
         ),
